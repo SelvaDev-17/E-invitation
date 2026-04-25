@@ -15,13 +15,17 @@ const containerVariants = {
   }
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40, rotateX: 10 },
+const cardVariants: any = {
+  hidden: { opacity: 0, y: 50, scale: 0.9 },
   visible: { 
     opacity: 1, 
     y: 0, 
-    rotateX: 0,
-    transition: { type: "spring", stiffness: 80, damping: 20 }
+    scale: 1,
+    transition: { 
+      type: "spring", 
+      stiffness: 100, 
+      damping: 15 
+    }
   }
 };
 

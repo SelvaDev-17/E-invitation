@@ -14,7 +14,7 @@ const containerVariants = {
   }
 };
 
-const cardVariants = (isEven: boolean) => ({
+const cardVariants: any = (isEven: boolean) => ({
   hidden: { opacity: 0, x: isEven ? 80 : -80, filter: "blur(10px)" },
   visible: { 
     opacity: 1, 
@@ -25,7 +25,7 @@ const cardVariants = (isEven: boolean) => ({
 });
 
 // Animation for the central line
-const lineVariants = {
+const lineVariants: any = {
   hidden: { height: 0, opacity: 0 },
   visible: { 
     height: "100%", 
