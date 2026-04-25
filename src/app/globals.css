@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  /* Theme changed to Yellow Golden Mandala */
+  --color-luxury-maroon: #451a03; /* Deep brown for text */
+  --color-luxury-maroon-light: #7f1d1d; /* Dark Red */
+  --color-luxury-gold: #ea580c; /* Burnt Orange */
+  --color-luxury-gold-light: #f59e0b; /* Amber */
+  --color-luxury-brass: #b45309; /* Dark Amber */
+  --color-luxury-cream: #fef08a; /* Bright Yellow Background */
+  --color-luxury-green: #ea580c; /* Aliased to orange for now */
+  --color-luxury-green-dark: #c2410c;
+  --color-luxury-dark: #280f02; 
+
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+}
+
+:root {
+  --background: var(--color-luxury-cream);
+  --foreground: var(--color-luxury-maroon);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-luxury-maroon);
+    --foreground: var(--color-luxury-cream);
+  }
+}
+
+body {
+  background-color: var(--color-luxury-cream);
+  color: var(--color-luxury-maroon);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Add custom scrollbar for luxury feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-luxury-dark); 
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-luxury-gold); 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-luxury-brass); 
+}
