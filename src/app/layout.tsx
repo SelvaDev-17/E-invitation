@@ -13,8 +13,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Siva & Parvati - A South Indian Wedding",
-  description: "Join us in celebrating our beautiful journey.",
+  title: "Govardan & Sanchana - Wedding Invitation",
+  description: "Join us in celebrating the wedding of S. Govardan and U. Sanchana",
 };
 
 export default function RootLayout({
