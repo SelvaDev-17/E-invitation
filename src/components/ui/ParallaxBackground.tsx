@@ -66,7 +66,13 @@ export function ParallaxBackground() {
 function MandalaSVG({ className }: { className?: string }) {
   const petals = Array.from({ length: 16 });
   return (
-    <svg viewBox="-200 -200 400 400" fill="currentColor" className={className}>
+    <motion.svg 
+      animate={{ rotate: 360 }}
+      transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+      viewBox="-200 -200 400 400" 
+      fill="currentColor" 
+      className={className}
+    >
       <circle cx="0" cy="0" r="30" />
       <circle cx="0" cy="0" r="45" fill="none" stroke="currentColor" strokeWidth="4" />
       {petals.map((_, i) => (
@@ -81,7 +87,7 @@ function MandalaSVG({ className }: { className?: string }) {
           <circle cx="0" cy="215" r="5" />
         </g>
       ))}
-    </svg>
+    </motion.svg>
   );
 }
 
@@ -89,7 +95,12 @@ function MandalaSVG({ className }: { className?: string }) {
 function CornerMandalaSVG({ className }: { className?: string }) {
   const petals = Array.from({ length: 16 });
   return (
-    <svg viewBox="-220 -220 440 440" className={className}>
+    <motion.svg 
+      animate={{ rotate: -360 }}
+      transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
+      viewBox="-220 -220 440 440" 
+      className={className}
+    >
       
       {/* Outer pointed layer (Dark red/brown outline) */}
       {petals.map((_, i) => (
@@ -130,6 +141,6 @@ function CornerMandalaSVG({ className }: { className?: string }) {
       {Array.from({length: 32}).map((_, i) => (
          <circle key={`dot1-${i}`} cx={Math.sin((i * 360/32) * Math.PI / 180) * 110} cy={Math.cos((i * 360/32) * Math.PI / 180) * 110} r="3" fill="var(--color-luxury-maroon)" />
       ))}
-    </svg>
+    </motion.svg>
   );
 }
