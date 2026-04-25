@@ -5,61 +5,58 @@ import { Volume2, VolumeX, Music } from "lucide-react";
 
 export default function AudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const hasInteracted = useRef(false);
 
   useEffect(() => {
-    // Initialize audio object
-    audioRef.current = new Audio("/bgm.mp3");
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.4; // Slightly lower volume for background music
+    // Initialize audio object once
+    if (typeof window !== "undefined" && !audioRef.current) {
+      audioRef.current = new Audio("/bgm.mp3");
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.4;
+    }
 
-    // Attempt to auto-play on first user interaction
-    const handleFirstInteraction = () => {
-      if (!hasInteracted && audioRef.current) {
-        audioRef.current
-          .play()
-          .then(() => {
-            setIsPlaying(true);
-            setHasInteracted(true);
-          })
-          .catch((err) => {
-            console.log("Autoplay prevented or audio file missing. Please ensure /public/bgm.mp3 exists.", err);
-          });
+    const handleInteraction = () => {
+      if (!hasInteracted.current && audioRef.current) {
+        hasInteracted.current = true;
+        audioRef.current.play()
+          .then(() => setIsPlaying(true))
+          .catch(err => console.log("Autoplay prevented:", err));
       }
       
-      // Remove listeners after first interaction
-      document.removeEventListener("click", handleFirstInteraction);
-      document.removeEventListener("touchstart", handleFirstInteraction);
-      document.removeEventListener("scroll", handleFirstInteraction);
+      document.removeEventListener("click", handleInteraction);
+      document.removeEventListener("touchstart", handleInteraction);
+      document.removeEventListener("scroll", handleInteraction);
     };
 
-    document.addEventListener("click", handleFirstInteraction);
-    document.addEventListener("touchstart", handleFirstInteraction);
-    document.addEventListener("scroll", handleFirstInteraction);
+    document.addEventListener("click", handleInteraction);
+    document.addEventListener("touchstart", handleInteraction);
+    document.addEventListener("scroll", handleInteraction);
 
     return () => {
+      document.removeEventListener("click", handleInteraction);
+      document.removeEventListener("touchstart", handleInteraction);
+      document.removeEventListener("scroll", handleInteraction);
+      
+      // Cleanup on unmount
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
-      document.removeEventListener("click", handleFirstInteraction);
-      document.removeEventListener("touchstart", handleFirstInteraction);
-      document.removeEventListener("scroll", handleFirstInteraction);
     };
-  }, [hasInteracted]);
+  }, []);
 
   const togglePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
+        setIsPlaying(false);
       } else {
-        audioRef.current.play().catch(err => {
-          console.error("Failed to play audio:", err);
-        });
+        audioRef.current.play()
+          .then(() => setIsPlaying(true))
+          .catch(err => console.error("Failed to play:", err));
       }
-      setIsPlaying(!isPlaying);
-      setHasInteracted(true);
+      hasInteracted.current = true;
     }
   };
 
