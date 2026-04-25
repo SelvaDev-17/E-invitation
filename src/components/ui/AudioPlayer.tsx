@@ -11,7 +11,8 @@ export default function AudioPlayer() {
   useEffect(() => {
     // Initialize audio object once
     if (typeof window !== "undefined" && !audioRef.current) {
-      audioRef.current = new Audio("/bgm.mp3");
+      // Must use basePath for GitHub pages
+      audioRef.current = new Audio("/E-invitation/bgm.mp3");
       audioRef.current.loop = true;
       audioRef.current.volume = 0.4;
     }
