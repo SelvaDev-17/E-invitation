@@ -26,10 +26,10 @@ const itemVariants: any = {
 
 export function Gallery() {
   const images = [
-    { id: 1, src: "/gallery/couple1.jpg", alt: "Couple photo 1", className: "col-span-2 row-span-2" },
-    { id: 2, src: "/gallery/couple2.jpg", alt: "Couple photo 2", className: "col-span-1 row-span-1" },
-    { id: 3, src: "/gallery/couple3.jpg", alt: "Couple photo 3", className: "col-span-1 row-span-2" },
-    { id: 4, src: "/gallery/couple4.jpg", alt: "Couple photo 4", className: "col-span-1 row-span-1" },
+    { id: 1, src: "https://images.unsplash.com/photo-1583939000340-c11656a8dd26?q=80&w=1000&auto=format&fit=crop", alt: "Couple photo 1", className: "col-span-2 row-span-2" },
+    { id: 2, src: "https://images.unsplash.com/photo-1542042161784-26ab9e041e89?q=80&w=1000&auto=format&fit=crop", alt: "Couple photo 2", className: "col-span-1 row-span-1" },
+    { id: 3, src: "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1000&auto=format&fit=crop", alt: "Couple photo 3", className: "col-span-1 row-span-2" },
+    { id: 4, src: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1000&auto=format&fit=crop", alt: "Couple photo 4", className: "col-span-1 row-span-1" },
   ];
 
   return (
